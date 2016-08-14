@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="edu.snnu.carrent.model">
+	<!-- name属性：哪个类
+		 table属性：对应哪个表，如果不写，默认的表名就是类的简单名称
+	-->
+	<class name="User" table="User">
+		<id name="id" type="int" column="id">
+            <generator class="native"/>
+		</id>
+		<property name="username" type="string" column="username" length="20" not-null="true"/>
+
+		<property name="password" type="string" column="password" not-null="true"/>
+
+		<set name="orders">
+			<key column="userid"></key>
+			<one-to-many class="Order"/>
+		</set>
+
+	</class>
+</hibernate-mapping>
